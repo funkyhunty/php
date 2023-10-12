@@ -29,6 +29,7 @@ if (preg_match('/^[a-zA-Z0-9_\-\.\/\%]*$/', $path)) {
     preg_match('/Location: (.+)/', $response, $matches);
     if (isset($matches[1])) {
         $redirectUrl = trim($matches[1]);
+        $redirectUrl = preg_replace('/^https/', 'http',$redirectUrl);
     }
 
     // 关闭 cURL 会话
