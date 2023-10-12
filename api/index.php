@@ -1,5 +1,6 @@
 <meta name="referrer" content="never">
 <?php
+echo "10086";
 // 获取并验证用户输入
 $path = isset($_GET['path']) ? $_GET['path'] : '';
 $path = urlencode($path);
