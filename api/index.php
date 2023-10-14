@@ -2,6 +2,7 @@
 // 获取并验证用户输入
 $path = isset($_GET['path']) ? $_GET['path'] : '';
 $path = urlencode($path);
+$path = str_replace("%2F", "/", $path); 
 
 // 验证输入，确保只包含合法字符
 if (preg_match('/^[a-zA-Z0-9_\-\.\/\%]*$/', $path)) {
