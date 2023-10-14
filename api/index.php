@@ -7,7 +7,7 @@ $path = str_replace("%2F", "/", $path);
 // 验证输入，确保只包含合法字符
 if (preg_match('/^[a-zA-Z0-9_\-\.\/\%]*$/', $path)) {
     // 合法的输入，继续处理
-    $path = urldecode($path);
+  //  $path = urldecode($path);
     $initialUrl = "https://onemanager-php--forevervideo.repl.co/$path";
     $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36";
     $referer = "https://www.aliyundrive.com"; // 替换成你想要的 Referer 地址
