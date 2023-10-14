@@ -5,7 +5,7 @@ $path = urlencode($path);
 $path = str_replace("%2F", "/", $path); 
 
 // 验证输入，确保只包含合法字符
-if (preg_match('/^[a-zA-Z0-9_\-\.\/\%]*$/', $path)) {
+if (preg_match('/^[a-zA-Z0-9_\-\.\/\%\(\)\+]*$/', $path)) {
     // 合法的输入，继续处理
   //  $path = urldecode($path);
     $initialUrl = "https://onemanager-php--forevervideo.repl.co/$path";
