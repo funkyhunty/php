@@ -1,13 +1,15 @@
+<meta name="referrer" content="never">
 <?php
 // 获取并验证用户输入
 $path = isset($_GET['path']) ? $_GET['path'] : '';
 $path = urlencode($path);
 $path = str_replace("%2F", "/", $path); 
-
+//echo $path;
+//exit;
 // 验证输入，确保只包含合法字符
 if (preg_match('/^[a-zA-Z0-9_\-\.\/\%\(\)\+]*$/', $path)) {
     // 合法的输入，继续处理
-  //  $path = urldecode($path);
+   // $path = urldecode($path);
     $initialUrl = "https://onemanager-php--forevervideo.repl.co/$path";
     $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36";
     $referer = "https://www.aliyundrive.com"; // 替换成你想要的 Referer 地址
@@ -30,7 +32,9 @@ if (preg_match('/^[a-zA-Z0-9_\-\.\/\%\(\)\+]*$/', $path)) {
     preg_match('/Location: (.+)/', $response, $matches);
     if (isset($matches[1])) {
         $redirectUrl = trim($matches[1]);
-        $redirectUrl = preg_replace('/^https/', 'http',$redirectUrl);
+        // 检查 $path 是否不以 ".jpg" 结尾，则跳转后的链接https替换为http
+      if (substr($path, -4) !== ".jpg") {
+        $redirectUrl = preg_replace('/^https/', 'http',$redirectUrl);}
     }
 
     // 关闭 cURL 会话
@@ -38,11 +42,14 @@ if (preg_match('/^[a-zA-Z0-9_\-\.\/\%\(\)\+]*$/', $path)) {
 
     if (!empty($redirectUrl)) {
         // 在浏览器中打开跳转后的 URL
-        header("Location: " . $redirectUrl);
+                header("Location: " . $redirectUrl);
         exit;
     } else {
         // 未发生跳转，你可以根据需要进行处理
-        echo "Error";
+        echo "Error. Network unstable. Please try again later.";
+          $path = preg_replace('/^img\/(.*)/', 'https://forevervideo.net/wp-content/uploads/$1',$path);
+          header("Location: " . $path);
+        
     }
 } else {
     // 非法输入，返回错误或采取其他安全措施
