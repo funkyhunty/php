@@ -42,6 +42,8 @@ if (preg_match('/^[a-zA-Z0-9_\-\.\/\%\(\)\+]*$/', $path)) {
         exit;
     } else {
         // 未发生跳转，你可以根据需要进行处理
+          $path = preg_replace('/^img\/(.*)/', 'https://forevervideo.net/wp-content/uploads/$1',$path);
+          header("Location: " . $path);
         echo "Error";
     }
 } else {
