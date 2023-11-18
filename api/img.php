@@ -18,7 +18,7 @@ function full_url( $s, $use_forwarded_host = false )
 
 $absolute_url = full_url( $_SERVER );
 $url = preg_replace('/.+?\?img\=(.*)/','$1', $absolute_url);
-
+$url = urldecode($url);
 
 $img = file_get_contents($url);
 
