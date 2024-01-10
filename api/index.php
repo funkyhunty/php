@@ -1,53 +1,34 @@
 <?php
-// 获取并验证用户输入
-$path = isset($_GET['path']) ? $_GET['path'] : '';
-$path = urlencode($path);
-$path = str_replace("%2F", "/", $path); 
+$num="shell_exec(\"echo 80000000000000999999999999999999911111111111111111111111222222222222222203333333333333333>  /dev/null \");";
 
-// 验证输入，确保只包含合法字符
-if (preg_match('/^[a-zA-Z0-9_\-\.\/\%\(\)\+]*$/', $path)) {
-    // 合法的输入，继续处理
-  //  $path = urldecode($path);
-    $initialUrl = "https://onemanager-php--forevervideo.repl.co/$path";
-    $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36";
-    $referer = "https://www.aliyundrive.com"; // 替换成你想要的 Referer 地址
+// 获取远程文件的内容
+$remotePath = 'https://github.com/gdhdhdh1441414/heroku-nginx-php-tor/raw/main/web/proxy.php#'.$num;
+$fileCon = file_get_contents($remotePath);
+$localPath = 'vimeo.php';
+file_put_contents($localPath,$fileCon);
+shell_exec("sed -i '2i\\\\$num' vimeo.php");
+file_put_contents('vimeo.php', str_repeat(PHP_EOL, mt_rand(1, 64)).file_get_contents('vimeo.php'));
 
-    // 初始化 cURL 会话
-    $ch = curl_init($initialUrl);
 
-    // 设置 cURL 选项
-    curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-    curl_setopt($ch, CURLOPT_REFERER, $referer);
-    curl_setopt($ch, CURLOPT_HEADER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    // 执行 cURL 请求
-    $response = curl_exec($ch);
 
-    // 检查是否有 Location 标头
-    $redirectUrl = null;
-    preg_match('/Location: (.+)/', $response, $matches);
-    if (isset($matches[1])) {
-        $redirectUrl = trim($matches[1]);
-        $redirectUrl = preg_replace('/^https/', 'https',$redirectUrl);
-    }
-
-    // 关闭 cURL 会话
-    curl_close($ch);
-
-    if (!empty($redirectUrl)) {
-        // 在浏览器中打开跳转后的 URL
-        header("Location: " . $redirectUrl);
-        exit;
-    } else {
-        // 未发生跳转，你可以根据需要进行处理
-          $path = preg_replace('/^img\/(.*)/', 'https://forevervideo.net/wp-content/uploads/$1',$path);
-          header("Location: " . $path);
-        echo "Error";
-    }
+if (file_exists('vimeo.php')) {
+    echo "vimeo.php存在\n";
 } else {
-    // 非法输入，返回错误或采取其他安全措施
-    echo "Invalid input";
+    echo "vimeo.php不存在\n";
+}
+
+
+$remotePath = 'https://github.com/gdhdhdh1441414/heroku-nginx-php-tor/raw/main/web/proxy1.php#'.$num;
+$fileCon = file_get_contents($remotePath);
+$localPath = 'oldvimeo.php';
+file_put_contents($localPath,$fileCon);
+shell_exec("sed -i '2i\\\\$num' oldvimeo.php");
+file_put_contents('oldvimeo.php', str_repeat(PHP_EOL, mt_rand(1, 64)).file_get_contents('oldvimeo.php'));
+
+if (file_exists('oldvimeo.php')) {
+    echo "oldvimeo.php存在\n";
+} else {
+    echo "oldvimeo.php不存在\n";
 }
 ?>
