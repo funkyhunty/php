@@ -24,6 +24,4 @@ RUN chown -R www-data:www-data /var/www/html
 
 # 暴露端口
 EXPOSE 80
-————————————————
-版权声明：本文为CSDN博主「qq_35008710」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/qq_35008710/article/details/130462218
+
