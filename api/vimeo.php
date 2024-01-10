@@ -17,7 +17,19 @@ $org=$_GET["org"];
 
 if  (strstr($link, "http")){ 
     
-    $res = shell_exec("curl --max-time 30 --speed-time 10 --speed-limit 10 -m 30 --connect-timeout 30 -L \"$link\" ");
+    $ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $link);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_MAXCONNECTS, 30);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+
+$res = curl_exec($ch);
+
+curl_close($ch);
     $res = preg_replace('/^$|.*You Have been banned.*/',$_SERVER['HTTP_HOST'].' 抓hash时出错'.$link, $res); 
     echo $res;
     exit;
